@@ -114,7 +114,7 @@ def main(unused_argv):
         #lpips_values = []
         if not FLAGS.eval_once:
             showcase_index = np.random.randint(0, dataset.size)
-        for idx in range(dataset.size):
+        for idx in range(dataset.sizerender_image):
             print(f"Evaluating {idx + 1}/{dataset.size}")
             batch = next(dataset)
             pred_color, pred_disp, pred_acc = utils.render_image(
