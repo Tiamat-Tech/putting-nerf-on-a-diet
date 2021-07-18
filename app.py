@@ -19,9 +19,9 @@ st.sidebar.header('SELECT YOUR VIEW DIRECTION')
 theta = st.sidebar.slider("Theta", min_value=0., max_value=2.*pi,
                           step=0.5, value=0.)
 phi = st.sidebar.slider("Phi", min_value=0., max_value=0.5*pi,
-                        step=0.1, value=0.)
+                        step=0.1, value=1.)
 radius = st.sidebar.slider("Radius", min_value=2., max_value=6.,
-                           step=1., value=6.)
+                           step=1., value=3.)
 
 
 pred_color, _ = render_predict_from_pose(state, theta, phi, radius)
