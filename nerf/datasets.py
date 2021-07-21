@@ -260,10 +260,10 @@ class Blender(Dataset):
         # LEGO SCENE: [2,5,10,40,52,53,69,78,83,85,90,94,96,97]
         # SHIP SCENE: [12, 28, 32, 33, 35, 36, 38, 44, 55, 66, 67, 88, 95, 96]
         if few_shot > 0 and split == 'train':
-            # np.random.seed(0)
-            # np.random.shuffle(frames)
-            # frames = frames[:few_shot]
-            frames = [12, 28, 32, 33, 35, 36, 38, 44, 55, 66, 67, 88, 95, 96]
+            np.random.seed(0)
+            np.random.shuffle(frames)
+            frames = frames[:few_shot]
+            #frames = [12, 28, 32, 33, 35, 36, 38, 44, 55, 66, 67, 88, 95, 96]
 
         for i in frames:
             frame = meta["frames"][i]
@@ -283,6 +283,7 @@ class Blender(Dataset):
                                      "set.".format(factor))
             cams.append(np.array(frame["transform_matrix"], dtype=np.float32))
             images.append(image)
+        print(f'no. of samples: {len(frames)}')
         return cams, images, meta
 
     def _next_train(self):
