@@ -43,6 +43,12 @@ from nerf import clip_utils
 FLAGS = flags.FLAGS
 utils.define_flags()
 
+# set up TPU for colab
+import os
+if "COLAB_TPU_ADDR" in os.environ:
+    import jax.tools.colab_tpu
+    jax.tools.colab_tpu.setup_tpu()
+print(f"detected device: {jax.local_devices()}")
 
 
 def compute_lpips(image1, image2, model):
