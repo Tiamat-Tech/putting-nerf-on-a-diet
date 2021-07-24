@@ -123,6 +123,7 @@ class NerfModel(nn.Module):
         )
         rgb = self.rgb_activation(raw_rgb)
         sigma = self.sigma_activation(raw_sigma)
+        return [(rgb, sigma, None)]
         # Volumetric rendering.
         comp_rgb, disp, acc, weights = model_utils.volumetric_rendering(
             rgb,
