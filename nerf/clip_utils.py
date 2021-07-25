@@ -21,7 +21,8 @@ def semantic_loss(clip_model, src_image, target_embedding):
     c_image = c_image.reshape([w, w, 3])
     f_image = f_image.reshape([w, w, 3])
      
-    src_embedding = clip_model.get_image_features(pixel_values=preprocess_for_CLIP(jnp.stack([c_image,f_image],0).transpose(0, 3, 1, 2)))
+    # src_embedding = clip_model.get_image_features(pixel_values=preprocess_for_CLIP(jnp.stack([c_image,f_image],0).transpose(0, 3, 1, 2)))
+    src_embedding = clip_model.get_image_features(pixel_values=preprocess_for_CLIP(jnp.expand_dims(c_image,0).transpose(0, 3, 1, 2)))
     src_embedding /= jnp.linalg.norm(src_embedding, axis=-1, keepdims=True)
     sc_loss = 2 - jnp.sum(src_embedding * target_embedding)
     return sc_loss, f_image
